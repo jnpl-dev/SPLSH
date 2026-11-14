@@ -6,6 +6,7 @@ const fontClass: Record<string, string> = {
   Knewave: "font-knewave",
   Bungee: "font-bungee",
   Poppins: "font-poppins",
+  "Better Faster": "font-better-faster",
 };
 
 /** Specimen card: name rendered in itself + Aa + alphabet (docs/04). */
@@ -26,7 +27,7 @@ export default function FontSpecimen({
   return (
     <figure
       className={cn(
-        "flex flex-col gap-3 rounded-card border p-5",
+        "flex flex-col gap-3 w-full rounded-card border p-5",
         tone === "dark" ? "border-white/15 bg-white/10" : "border-navy-900/10 bg-white",
         className,
       )}
@@ -48,7 +49,9 @@ export default function FontSpecimen({
             className="h-10 w-auto"
           />
         ) : (
-          <span className={cls}>Aa</span>
+          <span className={cn(cls, tone === "dark" ? "text-white" : "text-navy-900")}>
+            Aa
+          </span>
         )}
       </div>
       <figcaption className="flex flex-col gap-1">
@@ -56,6 +59,7 @@ export default function FontSpecimen({
           className={cn(
             "text-lg",
             cls ?? "font-bungee text-base tracking-[0.04em] uppercase",
+            tone === "dark" ? "text-white" : "text-navy-900",
           )}
         >
           {name}
@@ -76,7 +80,7 @@ export default function FontSpecimen({
         className={cn(
           "text-sm break-words",
           cls ?? "font-bungee text-xs tracking-[0.04em] uppercase",
-          tone === "dark" ? "text-white/60" : "text-navy-900/60",
+          tone === "dark" ? "text-white/85" : "text-navy-900/60",
         )}
       >
         {isWordmark ? "Wave-inspired lettering" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"}

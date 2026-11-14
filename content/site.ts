@@ -3,7 +3,7 @@
 // PLACEHOLDER=true → [CONFIRM]/[GAP] items render with a visible placeholder treatment.
 import { owners } from "./owners";
 
-export const PLACEHOLDER: boolean = true;
+export const PLACEHOLDER: boolean = false;
 export { owners };
 
 export const brand = {
@@ -35,7 +35,8 @@ export const nav = {
 
 export const hero = {
   eyebrow: "Boracay · Philippines",
-  headline: "How wet? How fun?",
+  // [REMOVED per pre-P2 polish] headline "How wet? How Fun?" removed from hero
+  headline: "",
   sub: "For those who like it wet.",
   scrollCue: "Dive in",
   chips: [
@@ -53,7 +54,7 @@ export const hero = {
 } as const;
 
 export const marqueeText =
-  "For those who like it wet ✺ How wet? How fun? ✺ Boracay ✺ SPLSH ✺";
+  "SPLSH ✦ For those who like it wet";
 
 /* ── 03 CONCEPT [PT#1] ─────────────────────────────────────── */
 export const concept = {
@@ -67,10 +68,10 @@ export const concept = {
       "A beach trip can become just another day by the shore — so SPLSH makes every visit more exciting, bringing together the thrill of water sports, the freedom of the open sea, and the playful energy of friends and family.",
     ],
     image: {
-      src: "/brand/story/banana-boat-beach.png",
-      alt: "Friends riding a banana boat along the shore in Boracay",
-      w: 1600,
-      h: 771,
+      src: "/media/s3-banana-aerial.jpg",
+      alt: "Aerial view of a speedboat towing a banana boat across turquoise water",
+      w: 1920,
+      h: 1079,
     },
     snorkel: {
       src: "/brand/story/snorkel-blob.png",
@@ -105,10 +106,10 @@ export const concept = {
       "Recreational groups",
     ],
     image: {
-      src: "/brand/story/who-we-serve.png",
-      alt: "Illustration of who SPLSH serves — friends, families and tourists",
-      w: 1580,
-      h: 521,
+      src: "/media/s1-beach-aerial.jpg",
+      alt: "Aerial view of a tropical beach cove with white sand and turquoise water",
+      w: 1920,
+      h: 1080,
     },
   },
   whyChoose: [
@@ -117,10 +118,10 @@ export const concept = {
       title: "A fun-filled experience",
       body: "A youthful, energetic brand that turns ordinary beach days into exciting adventures and unforgettable shared experiences.",
       image: {
-        src: "/brand/story/jetski-couple.png",
-        alt: "Couple riding a jet ski together in Boracay",
-        w: 1600,
-        h: 989,
+        src: "/brand/products/banana-boat.png",
+        alt: "Four friends riding a banana boat in Boracay",
+        w: 728,
+        h: 671,
       },
     },
     {
@@ -128,10 +129,10 @@ export const concept = {
       title: "A distinct market identity",
       body: "Diverse water activities, accessibility, and a playful personality that stand out in Boracay's tourism market.",
       image: {
-        src: "/brand/story/parasail.png",
-        alt: "Parasailors high above the water in Boracay",
-        w: 720,
-        h: 480,
+        src: "/brand/products/jet-ski.png",
+        alt: "Riders on a jet ski cutting through the water in Boracay",
+        w: 863,
+        h: 849,
       },
     },
   ],
@@ -173,17 +174,17 @@ export const offer = {
         },
         {
           name: "Paddleboarding",
-          img: "/brand/products/paddleboarding.png",
+          img: "/brand/products/kayaking.png",
           alt: "Paddleboarding in Boracay",
-          w: 393,
-          h: 650,
+          w: 683,
+          h: 426,
         },
         {
           name: "Kayaking",
-          img: "/brand/products/kayaking.png",
+          img: "/brand/products/paddleboarding.png",
           alt: "Kayaking in Boracay",
-          w: 683,
-          h: 426,
+          w: 393,
+          h: 650,
         },
       ],
     },
@@ -209,15 +210,15 @@ export const offer = {
           name: "Windsurfing",
           img: "/brand/products/windsurfing.png",
           alt: "Windsurfing in Boracay",
-          w: 564,
-          h: 879,
+          w: 639,
+          h: 638,
         },
         {
           name: "Kitesurfing",
           img: "/brand/products/kitesurfing.png",
           alt: "Kitesurfing in Boracay",
-          w: 639,
-          h: 638,
+          w: 830,
+          h: 1008,
         },
       ],
     },
@@ -234,14 +235,20 @@ export const offer = {
         },
         {
           name: "Wingfoiling",
-          img: "/brand/products/wingfoiling.png",
+          img: "/brand/products/windsurfing.png",
           alt: "Wingfoiling in Boracay",
-          w: 830,
-          h: 1008,
+          w: 564,
+          h: 879,
         },
       ],
     },
   ] satisfies Tier[],
+  introBg: {
+    src: "/media/s2-friends-sunset.jpg",
+    alt: "",
+    w: 1920,
+    h: 1280,
+  },
   promo: {
     text: "Jet Ski experience — two for ₱600",
     cta: "See the poster",
@@ -308,7 +315,7 @@ export const post = {
   title: "Our first hello",
   // [GAP] caption — AI draft, team must confirm (content.md §06)
   caption:
-    "Hello, Boracay! 🌊 We're SPLSH — for those who like it wet. Big laughs, bigger waves, and adventures for every kind of water lover. Tag the crew you're dragging into the sea with you. 📍 Boracay Island, Malay, Aklan",
+    "💦 READY TO GET SOAKED?\n\nSPLSH GOT YOU. 🌊\n\nSay hello to SPLSH — Boracay’s newest go-to for unforgettable water sports adventures! 🏝️\n\nWhether you're chasing an adrenaline rush or just here to make waves, we've got your ocean shenanigans covered. 😎💦\n\n📍 Boracay Island, Malay, Aklan\n\nAt SPLSH, we cater to those who like it wet. 💦",
   hashtags: "#SPLSH #ForThoseWhoLikeItWet #BoracayAdventures #GoodVibesBiggerWaves",
   image: {
     src: "/brand/post/first-brand-post.jpg",
@@ -334,6 +341,7 @@ export const post = {
   // [CONFIRM] deck doesn't state post typography exactly
   typography: [
     { name: "Knewave", role: "Handwritten notes & tagline" },
+    { name: "Better Faster", role: "Tagline (self-host — not on Google Fonts)" },
     { name: "Custom wordmark", role: "SPLSH logo lettering" },
   ],
 } as const;

@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { offer } from "@content/site";
 import SectionHeader from "@/components/ui/SectionHeader";
+import RevealStagger from "@/components/ui/RevealStagger";
+import ActivityBlob from "./ActivityBlob";
 
 /* Panel backgrounds escalate cyan → deep blue → navy with difficulty (docs/05 §E).
    Text tone flips to keep contrast ≥ 4.5:1 (never white on cyan). */
@@ -16,30 +20,45 @@ export default function Offer() {
       id="offer"
       data-section="offer"
       aria-labelledby="offer-title"
-      className="bg-navy-900 py-[var(--section-y)]"
+      className="relative bg-navy-900 py-[var(--section-y)]"
     >
-      <SectionHeader
-        id="offer"
-        tag={offer.tag}
-        title={offer.title}
-        lede={offer.lede}
-        tone="dark"
+      {/* Silhouette-friends background, navy scrim keeps header contrast */}
+      <Image
+        src={offer.introBg.src}
+        alt=""
+        fill
+        sizes="100vw"
+        aria-hidden="true"
+        className="object-cover"
+      />
+      <div aria-hidden="true" className="absolute inset-0 bg-navy-900/70" />
+      {/* White cloud band above the scrim (brand decoration) */}
+      <Image
+        src="/brand/ui/cloud.png"
+        alt=""
+        width={1704}
+        height={542}
+        aria-hidden="true"
+        sizes="100vw"
+        className="pointer-events-none absolute top-0 left-1/2 w-[90vw] max-w-[1200px] -translate-x-1/2 opacity-45"
       />
 
-      <div className="mt-12 flex flex-col gap-6 md:mt-16">
-        {offer.tiers.map((tier, i) => {
-          const tone = tierTone[i];
-          return (
-            <div key={tier.n} className={tone.panel}>
-              <div className="container flex flex-col gap-7 py-10 md:py-12">
-                <div className="flex flex-wrap items-baseline gap-4">
-                  <span
-                    className={`font-luckiest text-[clamp(3rem,7vw,5.5rem)] leading-none ${tone.text} opacity-90`}
-                    aria-hidden="true"
-                  >
-                    {tier.n}
-                  </span>
-                  <div className="flex flex-col items-start gap-1">
+      <div className="relative">
+        <SectionHeader
+          id="offer"
+          tag={offer.tag}
+          title={offer.title}
+          lede={offer.lede}
+          tone="dark"
+        />
+
+        <RevealStagger className="mt-12 flex flex-col gap-0 md:mt-12">
+          {offer.tiers.map((tier, i) => {
+            const tone = tierTone[i];
+            return (
+              <div key={tier.n} className={`${tone.panel} flex flex-col`}>
+                <div className="container flex flex-col gap-7 py-12 md:py-16">
+                  <div className="flex flex-col items-start gap-3 w-full">
                     <span
                       className={`rounded-full px-3 py-1 font-bungee text-[10px] tracking-[0.04em] uppercase ${tone.tag}`}
                     >
@@ -51,49 +70,22 @@ export default function Offer() {
                       {tier.name}
                     </h3>
                   </div>
-                </div>
 
-                <ul className="grid grid-cols-2 items-end gap-5 sm:grid-cols-3 lg:grid-cols-4">
-                  {tier.activities.map((activity) => (
-                    <li key={activity.name} className="flex flex-col items-center gap-2 text-center">
-                      <Image
-                        src={activity.img}
-                        alt={activity.alt}
-                        width={activity.w}
-                        height={activity.h}
-                        sizes="(max-width: 640px) 44vw, (max-width: 1023px) 30vw, 22vw"
-                        className="h-28 w-auto max-w-full object-contain sm:h-32 md:h-40"
+                  <ul className="flex flex-wrap justify-center gap-8 sm:gap-10 lg:gap-12 w-full">
+                    {tier.activities.map((activity) => (
+                      <ActivityBlob
+                        key={activity.name}
+                        activity={activity}
+                        tierText={tone.text}
+                        big={i === 2}
                       />
-                      <span className={`font-knewave text-lg md:text-xl ${tone.text}`}>
-                        {activity.name}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          );
-        })}
-
-        {/* End card — cross-link to Poster (Integration points, docs/01) */}
-        <div className="container">
-          <a
-            href={offer.promo.href}
-            className="group flex flex-wrap items-center justify-between gap-4 rounded-card border-2 border-cyan-500 bg-white/10 p-6 transition-colors duration-200 hover:bg-white/15 md:p-8"
-          >
-            <div className="flex flex-col gap-1">
-              <span className="font-bungee text-label tracking-[0.04em] text-cyan-200 uppercase">
-                Right now
-              </span>
-              <span className="font-luckiest text-[clamp(1.25rem,3vw,2rem)] leading-tight text-white uppercase">
-                {offer.promo.text}
-              </span>
-            </div>
-            <span className="rounded-full bg-orange-500 px-6 py-3 font-bungee text-label tracking-[0.04em] text-white uppercase transition-transform duration-200 group-hover:scale-105">
-              {offer.promo.cta} ↓
-            </span>
-          </a>
-        </div>
+            );
+          })}
+        </RevealStagger>
       </div>
     </section>
   );

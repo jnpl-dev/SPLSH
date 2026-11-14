@@ -21,6 +21,7 @@
   --font-knewave: var(--knewave), "Comic Sans MS", cursive;
   --font-bungee: var(--bungee), system-ui, sans-serif;
   --font-poppins: var(--poppins), system-ui, sans-serif;
+  --font-better-faster: "Better Faster", "Brush Script MT", cursive;
 
   /* Fluid type scale (docs/04) */
   --text-display-xl: 12vw;
@@ -45,9 +46,54 @@
   --ease-splash: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+@font-face {
+  font-family: "Better Faster";
+  src: url("/fonts/Better Faster.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Better Faster";
+  src: url("/fonts/Better Faster Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Animated ripple texture (hero + closing) — reduced-motion safe (static fallback) */
+@keyframes ripple {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 :root {
   --section-y: clamp(96px, 14vh, 200px);
-  --nav-h: 72px;
+  --nav-h: 96px;
   --gutter: clamp(16px, 4vw, 64px);
 }
 

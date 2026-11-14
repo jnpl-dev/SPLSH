@@ -1,6 +1,6 @@
-// [GAP] Team to supply. Fill in and drop images in /public/brand/owners/
-export const PLACEHOLDER = true; // flip to false when real owner data is in
+export const PLACEHOLDER = false;
 export const owners = [
-  { name: "Owner Name", role: "Co-founder · Role", photo: "/brand/owners/owner-1.jpg", quote: "" },
-  { name: "Owner Name", role: "Co-founder · Role", photo: "/brand/owners/owner-2.jpg", quote: "" },
+  { name: "John Paul C. Laureano", role: "Co-founder", photo: "/brand/owners/John Paul.jpg", quote: "" },
+  { name: "John Marc M. Aguilar", role: "Co-founder", photo: "/brand/owners/John Marc.jpg", quote: "" },
+  { name: "Maricar F. Gregorio", role: "Co-founder", photo: "/brand/owners/Maricar.jpg", quote: "" },
 ];

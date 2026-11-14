@@ -1,20 +1,20 @@
+"use client";
+
 import Image from "next/image";
-import { PLACEHOLDER, brand, post } from "@content/site";
+import { useRef } from "react";
+import { brand, post } from "@content/site";
 import SectionHeader from "@/components/ui/SectionHeader";
 import PaletteChip from "@/components/ui/PaletteChip";
 import FontSpecimen from "@/components/ui/FontSpecimen";
 import Badge from "@/components/ui/Badge";
-
-function ConfirmChip() {
-  if (!PLACEHOLDER) return null;
-  return (
-    <span className="rounded-full border border-dashed border-orange-500 px-3 py-1 font-bungee text-[10px] tracking-[0.04em] text-orange-500 uppercase">
-      Placeholder · team to confirm
-    </span>
-  );
-}
+import { useScrollParallax } from "@/components/ui/useScrollParallax";
+import Reveal from "@/components/ui/Reveal";
+import RevealStagger from "@/components/ui/RevealStagger";
 
 export default function PostSection() {
+  const frameRef = useRef<HTMLDivElement>(null);
+  useScrollParallax(frameRef, 1.15);
+
   return (
     <section
       id="post"
@@ -26,28 +26,24 @@ export default function PostSection() {
 
       <div className="container mt-14 grid items-start gap-14 lg:grid-cols-2 lg:gap-16">
         {/* Left — caption + palette + typography */}
-        <div className="flex flex-col gap-10">
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-wrap items-center gap-3">
+        <RevealStagger className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
               <h3 className="font-poppins text-[1.35rem] font-semibold text-navy-900">
                 The caption
               </h3>
-              <ConfirmChip />
+              <p className="max-w-[52ch] text-[1.0625rem] leading-relaxed text-navy-900/85 whitespace-pre-line">
+                {post.caption}
+              </p>
+              <p className="max-w-[52ch] font-poppins text-[0.975rem] leading-relaxed font-medium text-navy-600">
+                {post.hashtags}
+              </p>
             </div>
-            <p className="max-w-[52ch] text-[1.0625rem] leading-relaxed text-navy-900/85">
-              {post.caption}
-            </p>
-            <p className="max-w-[52ch] font-poppins text-[0.975rem] leading-relaxed font-medium text-navy-600">
-              {post.hashtags}
-            </p>
-          </div>
 
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap items-center gap-3">
               <h3 className="font-poppins text-[1.35rem] font-semibold text-navy-900">
                 Post palette
               </h3>
-              <ConfirmChip />
             </div>
             <div className="grid max-w-[560px] gap-3 sm:grid-cols-2">
               {post.palette.map((entry) => (
@@ -61,7 +57,6 @@ export default function PostSection() {
               <h3 className="font-poppins text-[1.35rem] font-semibold text-navy-900">
                 Post typography
               </h3>
-              <ConfirmChip />
             </div>
             <div className="grid max-w-[560px] gap-4 sm:grid-cols-2">
               {post.typography.map((font) => (
@@ -76,11 +71,21 @@ export default function PostSection() {
           >
             ← Meet the logo
           </a>
-        </div>
+        </RevealStagger>
 
         {/* Right — phone frame + annotations */}
-        <div className="flex flex-col items-center gap-10">
-          <div className="relative mx-auto w-[min(340px,88vw)]">
+        <Reveal className="flex flex-col items-center gap-10">
+          <div ref={frameRef} className="relative mx-auto w-[min(340px,88vw)]">
+            {/* Soft brand glow (optimized sibling of ui/glow-blob) */}
+            <Image
+              src="/optimized/brand/glow-blob.webp"
+              alt=""
+              width={800}
+              height={800}
+              aria-hidden="true"
+              sizes="440px"
+              className="pointer-events-none absolute top-1/2 left-1/2 h-[520px] w-[520px] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-80"
+            />
             {/* Cyan shards + dashed orbit — deck visual language (docs/02) */}
             <div
               aria-hidden="true"
@@ -98,7 +103,7 @@ export default function PostSection() {
             <div className="relative overflow-hidden rounded-[2rem] border-[10px] border-navy-900 bg-white shadow-[var(--shadow-blue)]">
               {/* Feed header — no third-party logos */}
               <div className="flex items-center gap-2 px-3 py-2.5">
-                <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-cyan-500">
+                <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white border border-navy-900/10">
                   <Image
                     src="/brand/logo/logo-secondary.png"
                     alt=""
@@ -144,19 +149,20 @@ export default function PostSection() {
               </div>
             </div>
           </div>
-
-          {/* Five numbered annotations (deck callouts) */}
-          <ul className="grid max-w-[520px] gap-3 sm:grid-cols-2">
-            {post.annotations.map((annotation) => (
-              <li key={annotation.n} className="flex items-center gap-3">
-                <Badge n={annotation.n} />
-                <span className="font-poppins text-sm font-medium text-navy-900">
-                  {annotation.label}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+          {/* Five numbered annotations (deck callouts) — below the post frame */}
+          <div className="mt-12 w-full flex flex-col items-center">
+            <ul className="grid max-w-[520px] gap-3 sm:grid-cols-2 lg:grid-cols-2 justify-center">
+              {post.annotations.map((annotation) => (
+                <li key={annotation.n} className="flex items-center gap-3">
+                  <Badge n={annotation.n} />
+                  <span className="font-poppins text-sm font-medium text-navy-900">
+                    {annotation.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

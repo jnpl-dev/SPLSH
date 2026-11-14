@@ -38,7 +38,7 @@ export default function PaletteChip({ name, hex, tone = "light", className }: Pr
   return (
     <div
       className={cn(
-        "relative flex items-center gap-3 rounded-2xl border p-3",
+        "relative flex items-center justify-between gap-3 rounded-2xl border p-3 w-full",
         dark ? "border-white/15 bg-white/10" : "border-navy-900/10 bg-white",
         className,
       )}
