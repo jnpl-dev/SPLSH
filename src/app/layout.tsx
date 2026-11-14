@@ -35,13 +35,17 @@ export const metadata: Metadata = {
   title: "SPLSH — For those who like it wet | Boracay Water Adventures",
   description:
     "SPLSH is a Boracay water-adventure brand for every interest and skill level. Explore our brand story, logo, first post and WET & WILD campaign.",
+  icons: {
+    icon: [{ url: "/brand/logo/logo-secondary.png" }],
+    apple: [{ url: "/brand/logo/logo-secondary.png" }],
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#103098",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
