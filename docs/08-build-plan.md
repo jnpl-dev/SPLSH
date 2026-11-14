@@ -11,15 +11,15 @@ Time guide assumes a focused vibe-coding session per phase (≈ 1–2 h each). O
 **Accept:** fonts render, Lenis scrolls, anchors work, no console errors.
 
 ## Phase 1 · Static content build (NO animation yet)  *(goal: rubric-complete & clean)*
-- [ ] `content/site.ts` typed from `content/content.md`
-- [ ] Build all sections per storyboard with real assets, correct order, responsive grid
-- [ ] PaletteChip + FontSpecimen components with real data (logo palette, post palette, poster palette)
-- [ ] Concept: story, mission, vision, values, who we serve, why choose, owners (placeholder-safe)
-- [ ] Offer: 3 tiers, 10 activities (static grid fallback — this stays as the mobile layout)
-- [ ] Logo: sketch, primary, secondary, palette, typography
-- [ ] Post: image, caption, palette, typography
-- [ ] Poster: image, palette, typography — **no explanation**
-- [ ] Closing contact
+- [x] `content/site.ts` typed from `content/content.md`
+- [x] Build all sections per storyboard with real assets, correct order, responsive grid
+- [x] PaletteChip + FontSpecimen components with real data (logo palette, post palette, poster palette)
+- [x] Concept: story, mission, vision, values, who we serve, why choose, owners (placeholder-safe)
+- [x] Offer: 3 tiers, 10 activities (static grid fallback — this stays as the mobile layout)
+- [x] Logo: sketch, primary, secondary, palette, typography
+- [x] Post: image, caption, palette, typography
+- [x] Poster: image, palette, typography — **no explanation**
+- [x] Closing contact
 **Accept:** Printing the page as a static document would already satisfy every required item. Layout is clean at 390 px.
 
 ## Phase 2 · Motion foundation  *(goal: the page feels alive, calm, consistent)*
