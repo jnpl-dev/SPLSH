@@ -1,12 +1,5 @@
 import Image from "next/image";
-
-const links = [
-  { label: "Concept", href: "#concept" },
-  { label: "Offer", href: "#offer" },
-  { label: "Logo", href: "#logo" },
-  { label: "Post", href: "#post" },
-  { label: "Poster", href: "#poster" },
-] as const;
+import { nav } from "@content/site";
 
 export default function Nav() {
   return (
@@ -34,7 +27,7 @@ export default function Nav() {
           aria-label="Primary"
           className="hidden items-center gap-7 md:flex lg:gap-9"
         >
-          {links.map((link) => (
+          {nav.links.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -46,10 +39,10 @@ export default function Nav() {
         </nav>
 
         <a
-          href="mailto:SPLSH@gmail.com"
+          href={nav.cta.href}
           className="shrink-0 rounded-full bg-orange-500 px-4 py-2 font-bungee text-label uppercase tracking-[0.04em] text-white transition-transform duration-200 hover:scale-105 md:px-5 md:py-2.5"
         >
-          Book a ride
+          {nav.cta.label}
         </a>
       </div>
     </header>
